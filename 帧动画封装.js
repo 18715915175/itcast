@@ -12,12 +12,7 @@
 					this.img=img;
 					this.widthFrame=widthFrame;
 					this.heightFrame=heightFrame;
-					thiwidthFrame;
-					this.height=this.img.height/this.heightFrame;
-					this.currentFrame=0;
-					this.direction=2;
-					this.speed=speed||5;
-				}
+					thi
 				
 				extend(Person.prototype,{
 					draw:function(){
