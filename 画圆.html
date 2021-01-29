@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<canvas id="cvs" width="500" height="500"></canvas>
+		
+		
+		
+		<script type="text/javascript">
+			var cvs=document.getElementById("cvs");
+			
+			var ctx=cvs.getContext("2d");
+			function extend(o1,o2){
+				for(var key in o2){
+					if(o2.hasOwnProperty(key)){
+						o1[key]=o2[key];
+					}
+				}
+			}
+			
+			function angle(ang){
+				return Math.PI/180*ang;
+			}
+			function Pipe(x,y,r,data){
+				this.x=x;
+				this.y=y;
+				this.r=r;
+				this.data=data;
+				this.colors=["blue","yellow","red","pink","orange"];
+			}
+			// 给原型扩充方法
+			extend(Pipe.prototype,{
+				// 绘制饼图
+				draw:function(){
+					var self=this;
+					var num=0;
+					this.data.forEach(function(obj){
+						num+=obj.val;
+					})
+					var baseAngle=360/num;
+					var startAngle=0;
+					var endAngle=0;
+					var lineAngle=0;
+					var lineX=0;
+					var lineY=0;
+					this.data.forEach(function(obj,i){
+						
+						
+						
+						startAngle=endAngle;
+						
+						endAngle=endAngle+obj.val*baseAngle;
+						
+						
+						
+						
+						lineAngle=startAngle+obj.val*baseAngle/2;
+						lineX =self.x+(self.r+25)*Math.cos(angle(lineAngle));
+						lineY =self.y+(self.r+25)*Math.sin(angle(lineAngle));
+						
+						
+						ctx.beginPath();
+						ctx.moveTo(self.x,self.y);
+						ctx.arc(self.x,self.y,self.r,angle(startAngle),angle(endAngle));
+						ctx.closePath();
+						ctx.fillStyle=self.colors[i];
+						ctx.fill();
+						
+						
+						ctx.beginPath();
+						ctx.moveTo(self.x,self.y);
+						ctx.lineTo(lineX,lineY);
+						ctx.strokeStyle=self.colors[i];
+						ctx.stroke()
+						if(lineAngle>90 && lineAngle<270){
+							ctx.textAlign="right"
+							ctx.fillText(obj.food,lineX,lineY)
+						}else{
+							ctx.textAlign="left"
+							ctx.fillText(obj.food,lineX,lineY)
+						}
+					})
+				}
+			})
+			var pip = new Pipe(300,300,100,[
+				{
+					val:10,
+					food:"面条"
+				},
+				{
+					val:40,
+					food:"包子"
+				},
+				{
+					val:30,
+					food:"米饭"
+				},
+				{
+					val:60,
+					food:"饺子"
+				},
+				]);
+			pip.draw();
+		</script>
+	</body>
+</html>

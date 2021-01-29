@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="500" height="500"></canvas>
+		
+		
+		<script type="text/javascript">
+			var cvs=document.getElementById("cvs");
+			
+			var ctx=cvs.getContext("2d");
+			ctx.strokeStyle="blue";
+			ctx.moveTo(110,10);
+			ctx.lineTo(160,60);
+			ctx.lineTo(60,60);
+			ctx.lineTo(110,10);
+			
+			// 解决锯齿方法1：
+			// ctx.lineTo(160,60);
+			// 2：闭合线路,最后一条边可以忽略
+			ctx.closePath()
+			ctx.lineWidth=6;
+			ctx.stroke();
+		</script>
+		
+	</body>
+</html>

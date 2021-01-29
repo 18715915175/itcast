@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			canvas{
+				border: 1px solid black;
+			}
+			img {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<canvas id="cvs" width="300" height="300"></canvas>
+		<img class="image" src="1.jpg" >
+		
+		
+		<script src="帧动画封装.js"></script>
+		<script>
+			
+			var cvs=document.getElementById("cvs");
+			var ctx=cvs.getContext("2d");
+			var img=document.querySelector(".image");
+			
+			
+			
+			window.onload= function(){
+				var person=new Person(ctx,img,5,1,50,50,50,50);
+				person.bind()
+				person.direction=2;
+				setInterval(function(){
+					ctx.clearRect(0,0,cvs.width,cvs.height);
+					person.draw();
+					person.currentFrame=++person.currentFrame>=person.widthFrame?0:person.currentFrame;
+					person.update();
+				},200)
+			}
+			
+			
+		</script>
+	</body>
+</html>

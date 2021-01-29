@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="cvs" width="500" height="500"></canvas>
+		
+		<script type="text/javascript">
+			var cvs=document.getElementById("cvs");
+			
+			var ctx=cvs.getContext("2d");
+			function Line(ctx,padding,arrow){
+				this.ctx=ctx;
+				this.padding=padding ||{top:10,bottom:10,left:10,right:10};
+				this.arrow=arrow || {width:10,height:10};
+				var vertexTop,yuandian,you;
+				vertexTop={
+					x:this.padding.left,
+					y:this.padding.top
+				}
+				yuandian={
+					x:this.padding.left,
+					y:this.ctx.canvas.height-this.padding.bottom
+				}
+				you={
+					x:this.ctx.canvas.width-this.padding.right,
+					y:this.ctx.canvas.height-this.padding.bottom
+				}
+			}
+			
+			Line.prototype = {
+				constructor:Line,
+				drawCoord:function(){
+					this.ctx.beginPath();
+					this.ctx.moveTo(this.vertexTop.x,this.vertexTop.y);
+					this.ctx.lineTo(this.yuandian.x,this.yuandian.y);
+					this.ctx.lineTo(this.you.x,this.you.y);
+					this.ctx.stroke();
+					
+					
+				}
+				
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// function person(name,age){
+			// 	this.name=name;
+			// 	this.age=age;
+			// }
+			// person.prototype.sayname=function(){
+			// 	console.log(this.name)
+			// }
+			// var xiaofang= new person("小芳",16)
+			// xiaofang.sayname()
+			
+			// xiaofang.name="大芳";
+			// xiaofang.sayname()
+		</script>
+		
+		<script>
+			var line=new Line( ctx );
+			line.drawCoord();
+			
+		</script>
+	</body>
+</html>

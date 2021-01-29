@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<canvas id="cvs" width="500" height="500"></canvas>
+		
+		
+		
+		<script type="text/javascript">
+			var cvs=document.getElementById("cvs");
+			
+			var ctx=cvs.getContext("2d");
+			function angle(ang){
+				return Math.PI/180*ang;
+			}
+			ctx.moveTo(100,300);
+			ctx.arc(100,300,90,0,angle(150),);
+			ctx.closePath()
+			ctx.stroke()
+			
+			
+			
+		</script>
+	</body>
+</html>
